@@ -1,0 +1,24 @@
+name: Add to comments
+
+on:
+  issues:
+    types: [opened]
+    
+jobs:
+  add-a-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: add-comment
+        uses: peter-evans/create-or-update-project-card@v1.1.4
+        if: github.event.label.name == 'Data Request'
+        with:
+          token: ${{ secrets.PAT_DATA_BOARD }}
+          project-location: github
+          project-name: GitHub Data tracking
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Thanks for submitting this issue! We'll be in touch with additional questions."
+            })
