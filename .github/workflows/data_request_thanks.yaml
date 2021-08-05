@@ -15,5 +15,5 @@ jobs:
         uses: ActionsDesk/add-comment-action@master
         with:
            message: 'Welcome to the repository!'
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        #env:
+         # GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
