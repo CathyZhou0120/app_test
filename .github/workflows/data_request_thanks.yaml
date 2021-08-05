@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: add-comment
         uses: peter-evans/create-or-update-project-card@v1.1.4
-        if: github.event.label.name == 'Data Request'
+
         with:
           token: ${{ secrets.PAT_DATA_BOARD }}
           project-location: github
