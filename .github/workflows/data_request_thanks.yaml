@@ -2,21 +2,18 @@ name: Add to comments
 
 on:
   issues:
-    types: [opened]
+    types: [labeled]
     
   workflow_dispatch:
     
 jobs:
-  add-a-comment:
-    if: github.event.label.name == 'Data Request'
+  if: ${{ github.event.label.name == 'Data Request'}}
+  add-comment:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
-      - name: add-comment
-        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae
-
+      - name: Comment on Issue
+        uses: ActionsDesk/add-comment-action@master
         with:
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: Thank you for your contribution! :sparkles:
+           message: 'Welcome to the repository!'
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
